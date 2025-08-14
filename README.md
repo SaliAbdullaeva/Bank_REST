@@ -1,4 +1,6 @@
+[![Java CI](https://github.com/Bank_REST/actions/workflows/ci.yml/badge.svg)](https://github.com/Bank_REST/actions/workflows/ci.yml)
 # Система управления банковскими картами
+
 
 Backend-приложение на Java (Spring Boot) для управления банковскими картами.
 

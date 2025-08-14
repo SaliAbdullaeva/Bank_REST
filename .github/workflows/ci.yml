@@ -44,7 +44,9 @@ jobs:
           path: target/site/jacoco
 
       - name: Check code style
-        run: mvn checkstyle:check
+        run: mvn checkstyle:check \
+          -Dcheckstyle.config.location=file:config/checkstyle/checkstyle.xml \
+          -Dcheckstyle.suppressions.location=file:config/checkstyle/checkstyle-suppressions.xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4

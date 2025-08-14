@@ -29,7 +29,7 @@ public class JwtSecurityConfig {
         return new JwtAuthenticationFilter(jwtUtil, userDetailsService);
     }
 
-    @Bean
+    @Bean("jwtPasswordEncoder")
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
