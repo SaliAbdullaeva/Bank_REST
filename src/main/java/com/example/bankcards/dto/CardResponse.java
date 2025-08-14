@@ -16,7 +16,12 @@ public class CardResponse {
     private CardStatus status;
     private BigDecimal balance;
 
-    public CardResponse(Long id, String cardNumber, String owner, LocalDate expiryDate, CardStatus status, BigDecimal balance) {
+    public CardResponse(Long id,
+                        String cardNumber,
+                        String owner,
+                        LocalDate expiryDate,
+                        CardStatus status,
+                        BigDecimal balance) {
         this.id = id;
         this.maskedCardNumber = cardNumber;
         this.owner = owner;
