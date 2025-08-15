@@ -1,10 +1,10 @@
 package com.example.bankcards.controller;
 
-import com.example.bankcards.BaseTestConfig;
-import com.example.bankcards.service.AuthService;
 import com.example.bankcards.dto.AuthRequest;
 import com.example.bankcards.dto.AuthResponse;
 import com.example.bankcards.dto.UserRegisterRequest;
+import com.example.bankcards.service.AuthService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
@@ -17,9 +17,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-class AuthControllerTest extends BaseTestConfig {
+class AuthControllerTest {
 
     private MockMvc mockMvc;
 
@@ -40,7 +38,7 @@ class AuthControllerTest extends BaseTestConfig {
     @Test
     void register_shouldReturnAuthResponse() throws Exception {
         UserRegisterRequest req = new UserRegisterRequest();
-        // заполни по необходимости поля в req
+        // можно заполнить поля req если нужно
 
         AuthResponse resp = new AuthResponse("token");
         when(authService.register(any())).thenReturn(resp);
@@ -55,7 +53,7 @@ class AuthControllerTest extends BaseTestConfig {
     @Test
     void login_shouldReturnAuthResponse() throws Exception {
         AuthRequest req = new AuthRequest();
-        // заполни по необходимости поля в req
+        // можно заполнить поля req если нужно
 
         AuthResponse resp = new AuthResponse("token");
         when(authService.login(any())).thenReturn(resp);

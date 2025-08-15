@@ -18,7 +18,7 @@ public class CardRequest {
     @Pattern(regexp = "\\d{16}", message = "Номер карты должен содержать 16 цифр")
     private String cardNumber;
 
-    @NotBlank(message = "Владелец обязателен")
+    @NotNull(message = "Владелец обязателен")
     private Long userId;
 
     @NotNull(message = "Срок действия обязателен")

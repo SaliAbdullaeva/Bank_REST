@@ -26,6 +26,7 @@ public class CardService {
 
     private final CardRepository cardRepository;
     private final UserRepository userRepository;
+    private final MaskUtil maskUtil;
 
     public List<CardResponse> getCards(int page, int size, String search) {
         Pageable pageable = PageRequest.of(page, size);
@@ -92,7 +93,7 @@ public class CardService {
     }
 
     private CardResponse mapToCardResponseWithMask(Card card) {
-        String maskedNumber = MaskUtil.maskCardNumber(card.getCardNumber());
+        String maskedNumber = maskUtil.maskCardNumber(card.getCardNumber()); // через инжект
         String ownerName = card.getOwner().getUsername();
 
         return new CardResponse(
@@ -104,4 +105,5 @@ public class CardService {
                 card.getBalance()
         );
     }
+
 }

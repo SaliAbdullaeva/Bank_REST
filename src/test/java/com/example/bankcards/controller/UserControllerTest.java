@@ -1,10 +1,10 @@
 package com.example.bankcards.controller;
 
-import com.example.bankcards.BaseTestConfig;
 import com.example.bankcards.dto.UserRegisterRequest;
 import com.example.bankcards.dto.UserResponse;
 import com.example.bankcards.entity.User;
 import com.example.bankcards.service.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
@@ -19,9 +19,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-class UserControllerTest extends BaseTestConfig {
+class UserControllerTest {
 
     private MockMvc mockMvc;
 
@@ -51,9 +49,7 @@ class UserControllerTest extends BaseTestConfig {
 
     @Test
     void getUserById_shouldReturnUser() throws Exception {
-        User user = new User();
-
-        UserResponse userResponse = new UserResponse(user.getId(), user.getUsername());
+        UserResponse userResponse = new UserResponse(1L, "testuser");
         when(userService.getUserById(anyLong())).thenReturn(userResponse);
 
         mockMvc.perform(get("/api/users/1"))

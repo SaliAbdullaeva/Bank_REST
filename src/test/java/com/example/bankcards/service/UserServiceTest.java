@@ -1,8 +1,8 @@
 package com.example.bankcards.service;
 
-import com.example.bankcards.BaseTestConfig;
 import com.example.bankcards.entity.User;
 import com.example.bankcards.repository.UserRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -13,7 +13,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class UserServiceTest extends BaseTestConfig {
+class UserServiceTest {
 
     @Mock
     private UserRepository userRepository;
@@ -21,12 +21,13 @@ class UserServiceTest extends BaseTestConfig {
     @InjectMocks
     private UserService userService;
 
-    public UserServiceTest() {
+    @BeforeEach
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void testFindByUsername_UserExists() {
+    void findByUsername_UserExists() {
         User user = new User();
         user.setUsername("testuser");
 
@@ -36,14 +37,16 @@ class UserServiceTest extends BaseTestConfig {
 
         assertTrue(found.isPresent());
         assertEquals("testuser", found.get().getUsername());
+        verify(userRepository).findByUsername("testuser");
     }
 
     @Test
-    void testFindByUsername_UserNotFound() {
+    void findByUsername_UserNotFound() {
         when(userRepository.findByUsername("missing")).thenReturn(Optional.empty());
 
         Optional<User> found = userService.findByUsername("missing");
 
         assertFalse(found.isPresent());
+        verify(userRepository).findByUsername("missing");
     }
 }
